@@ -1,0 +1,345 @@
+/* ============================================================
+   ai-gate.css —— AI 门禁
+   电脑端：图右、文字/选项左
+   手机端：图 → 文字 → 红字 → 选项，从上到下
+   ============================================================ */
+
+/* ---------- 全屏层 ---------- */
+.ai-gate {
+  position: fixed;
+  inset: 0;
+  background: #ffffff;
+  z-index: 99999;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 24px;
+  opacity: 0;
+  transition: opacity .4s ease;
+  overflow-y: auto;
+}
+.ai-gate.show { display: flex; opacity: 1; }
+
+/* ---------- 电脑端布局 ---------- */
+.ai-gate-stage {
+  position: relative;
+  width: 100%;
+  max-width: 1100px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-areas:
+    "text   img"
+    "choice img";
+  column-gap: 40px;
+  row-gap: 30px;
+  align-items: center;
+  justify-content: center;
+}
+
+.ai-gate-text {
+  grid-area: text;
+  justify-self: end;
+  align-self: end;
+  max-width: 360px;
+  font-size: clamp(18px, 3.5vw, 24px);
+  font-weight: 700;
+  color: #1f2937;
+  letter-spacing: 2px;
+  line-height: 1.6;
+  min-height: 60px;
+  text-align: right;
+}
+.ai-gate-text .typing::after {
+  content: "|";
+  color: #5B8DEF;
+  animation: aiBlink 0.8s infinite;
+  margin-left: 4px;
+}
+@keyframes aiBlink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+.ai-gate-avatar {
+  grid-area: img;
+  width: 420px;
+  max-width: 45vw;
+  height: auto;
+  object-fit: contain;
+  opacity: 0;
+  transform: translateY(20px) scale(.96);
+  transition: opacity .6s ease, transform .6s cubic-bezier(.34, 1.4, .5, 1);
+}
+.ai-gate.show .ai-gate-avatar {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.ai-gate-choices {
+  grid-area: choice;
+  justify-self: end;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  max-width: 360px;
+  opacity: 0;
+  transition: opacity .35s ease;
+  pointer-events: none;
+}
+.ai-gate-choices.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.ai-gate-choice {
+  padding: 14px 24px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #475569;
+  background: #fff;
+  border: 2px solid rgba(91, 141, 239, .3);
+  border-radius: 14px;
+  cursor: pointer;
+  font-family: inherit;
+  text-align: left;
+  transition: all .2s ease;
+}
+.ai-gate-choice:hover {
+  color: #5B8DEF;
+  border-color: #5B8DEF;
+  box-shadow: 0 8px 20px rgba(91, 141, 239, .18);
+}
+.ai-gate-choice:active { transform: scale(.98); }
+
+.ai-gate-choice-c {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px 10px 18px;
+  border: 2px solid rgba(91, 141, 239, .3);
+  border-radius: 14px;
+  background: #fff;
+  transition: all .2s ease;
+}
+.ai-gate-choice-c:focus-within {
+  border-color: #5B8DEF;
+  box-shadow: 0 8px 20px rgba(91, 141, 239, .18);
+}
+.ai-gate-choice-c .label {
+  font-size: 16px;
+  font-weight: 600;
+  color: #475569;
+  white-space: nowrap;
+}
+.ai-gate-choice-c input {
+  flex: 1;
+  min-width: 0;
+  height: 40px;
+  padding: 0 14px;
+  font-size: 15px;
+  font-family: inherit;
+  color: #1f2937;
+  background: #f8fafc;
+  border: 1px solid rgba(148, 163, 184, .3);
+  border-radius: 10px;
+  outline: none;
+  transition: all .2s ease;
+}
+.ai-gate-choice-c input::placeholder { color: #94a3b8; }
+.ai-gate-choice-c input:focus {
+  background: #fff;
+  border-color: #5B8DEF;
+}
+.ai-gate-choice-c button {
+  height: 40px;
+  padding: 0 18px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+  background: linear-gradient(135deg, #5B8DEF 0%, #8B7CF6 100%);
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-family: inherit;
+  white-space: nowrap;
+  transition: all .2s ease;
+}
+.ai-gate-choice-c button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(91, 141, 239, .35);
+}
+
+/* ---------- 红色驳回：默认完全隐藏 ---------- */
+.ai-gate-denied {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(.9);
+  background: rgba(255, 255, 255, 0.97);
+  padding: 30px 44px;
+  border-radius: 20px;
+  box-shadow: 0 24px 60px rgba(225, 29, 72, 0.25);
+  border: 2px solid rgba(225, 29, 72, 0.25);
+  font-size: clamp(26px, 5vw, 40px);
+  font-weight: 900;
+  color: #e11d48;
+  letter-spacing: 8px;
+  text-align: center;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 99998;
+  transition: opacity .3s ease, transform .3s cubic-bezier(.34, 1.4, .5, 1);
+}
+.ai-gate-denied.show {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+/* ---------- 被踢出提示页 ---------- */
+.ai-kick {
+  position: fixed;
+  inset: 0;
+  background: #ffffff;
+  z-index: 99999;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  padding: 24px;
+}
+.ai-kick.show { display: flex; }
+.ai-kick-icon {
+  font-size: 64px;
+  color: #e11d48;
+  margin-bottom: 24px;
+  animation: aiShake .6s ease;
+}
+@keyframes aiShake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-10px); }
+  40% { transform: translateX(10px); }
+  60% { transform: translateX(-6px); }
+  80% { transform: translateX(6px); }
+}
+.ai-kick-title {
+  font-size: clamp(22px, 5vw, 32px);
+  font-weight: 900;
+  color: #e11d48;
+  letter-spacing: 4px;
+  margin-bottom: 14px;
+}
+.ai-kick-sub {
+  font-size: clamp(16px, 3vw, 20px);
+  color: #64748b;
+  letter-spacing: 1px;
+}
+
+/* ============================================================
+   手机竖屏（<= 900px）：从上到下
+   图 → 文字 → 红字 → 选项
+   ============================================================ */
+@media (max-width: 900px) {
+  .ai-gate {
+    padding: 32px 20px 60px;
+    align-items: flex-start;
+  }
+
+  .ai-gate-stage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    max-width: 480px;
+    grid-template-columns: none;
+    grid-template-areas: none;
+  }
+
+  .ai-gate-avatar {
+    order: 1;
+    width: 220px;
+    max-width: 68vw;
+    margin: 0;
+  }
+
+  .ai-gate-text {
+    order: 2;
+    text-align: center;
+    justify-self: auto;
+    align-self: auto;
+    max-width: 100%;
+    min-height: 48px;
+    font-size: 17px;
+    letter-spacing: 1px;
+  }
+
+  /* 红字变正常流，放在图下面，不悬浮 */
+  .ai-gate-denied {
+    position: static;
+    transform: none !important;
+    inset: auto;
+    order: 3;
+    width: 100%;
+    max-width: 100%;
+    padding: 22px 28px;
+    border-radius: 18px;
+    font-size: clamp(22px, 7vw, 30px);
+    letter-spacing: 5px;
+    opacity: 0;
+    transition: opacity .3s ease;
+    margin: 0;
+  }
+  .ai-gate-denied.show {
+    opacity: 1;
+    transform: none !important;
+  }
+
+  .ai-gate-choices {
+    order: 4;
+    max-width: 100%;
+    width: 100%;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .ai-gate-choice {
+    width: 100%;
+    text-align: center;
+    padding: 14px 18px;
+    border-radius: 12px;
+    font-size: 15px;
+  }
+
+  .ai-gate-choice-c {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+    padding: 12px 14px;
+  }
+  .ai-gate-choice-c .label {
+    text-align: center;
+    white-space: normal;
+    font-size: 15px;
+  }
+  .ai-gate-choice-c input,
+  .ai-gate-choice-c button {
+    width: 100%;
+    flex: none;
+    height: 44px;
+  }
+}
+
+/* ---------- 超窄屏（<= 360px） ---------- */
+@media (max-width: 360px) {
+  .ai-gate-avatar { width: 180px; }
+  .ai-gate-text { font-size: 15px; min-height: 44px; }
+  .ai-gate-choice { font-size: 14px; padding: 12px 14px; }
+  .ai-gate-choice-c .label { font-size: 14px; }
+  .ai-gate-denied {
+    font-size: 20px;
+    letter-spacing: 3px;
+    padding: 20px 24px;
+  }
+}

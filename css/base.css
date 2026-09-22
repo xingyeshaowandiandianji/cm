@@ -1,0 +1,58 @@
+/* ============================================================
+   base.css —— 全局变量 · 重置 · 基础元素样式
+   分类：设计令牌（颜色/阴影/渐变）+ 浏览器默认样式归零 + 全局标签样式
+   ============================================================ */
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --primary: #5B8DEF;
+  --primary-dark: #4A7FE0;
+  --accent: #8B7CF6;
+  --text: #334155;
+  --text-dark: #0F172A;
+  --text-light: #64748B;
+  --bg: #F4F7FC;
+  --card: rgba(255, 255, 255, .82);
+  --border: rgba(148, 163, 184, .18);
+  --hl-bg: linear-gradient(120deg, #DCE9FD, #E4DBFE);
+  --hl-text: #1E40AF;
+  --shadow-md: 0 10px 32px rgba(51, 65, 85, .08);
+  --shadow-lg: 0 20px 48px rgba(51, 65, 85, .12);
+  --gradient-primary: linear-gradient(135deg, #5B8DEF 0%, #8B7CF6 100%);
+  --gradient-soft: linear-gradient(135deg, #EAF1FE 0%, #F0EBFE 100%);
+}
+
+html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+               "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  background: var(--bg); color: var(--text); line-height: 1.75;
+  -webkit-font-smoothing: antialiased; overflow-x: hidden; position: relative;
+}
+
+/* 页面两侧的装饰光晕 */
+body::before {
+  content: ""; position: fixed; top: -300px; left: -200px;
+  width: 800px; height: 800px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(91, 141, 239, .18), transparent 65%);
+  pointer-events: none; z-index: -2;
+}
+body::after {
+  content: ""; position: fixed; bottom: -300px; right: -200px;
+  width: 800px; height: 800px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(139, 124, 246, .16), transparent 65%);
+  pointer-events: none; z-index: -2;
+}
+
+a { text-decoration: none; color: inherit; }
+img { display: block; max-width: 100%; }
+mark { background: var(--hl-bg); color: var(--hl-text); padding: 1px 4px; border-radius: 4px; font-weight: 600; }
+
+/* 全文通用的高亮强调文字（首页/驱动页/文章页共用） */
+.hl {
+  color: var(--primary-dark); font-weight: 700;
+  background: linear-gradient(180deg, transparent 62%, rgba(91, 141, 239, .22) 62%);
+  padding: 0 2px;
+}
