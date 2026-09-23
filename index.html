@@ -1,0 +1,443 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="沉默的个人主页 —— 嗨嗨，这里是沉默科技频道！">
+<title>沉默 | 个人主页</title>
+
+<!-- ============ 样式：本地化 + 分类 ============ -->
+<!-- 图标字体（已下载到本地，不再走 CDN） -->
+<link rel="stylesheet" href="css/fontawesome/all.min.css">
+<!-- 1. 基础：变量 / 重置 / 全局元素 -->
+<link rel="stylesheet" href="css/base.css">
+<!-- 2. 布局：导航栏 / 搜索 / 侧边导航 / 页脚 -->
+<link rel="stylesheet" href="css/layout.css">
+<!-- 3. 首页：Hero / 关于 / 技能 / 项目 / 联系等 -->
+<link rel="stylesheet" href="css/home.css">
+<!-- 4. 子页面：驱动 / 文章 / 好友 / 成员 -->
+<link rel="stylesheet" href="css/pages.css">
+<!-- 5. 响应式适配 -->
+<link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+<!-- ================================================================
+     ① 顶部导航栏（整站共用）
+     ================================================================ -->
+<header class="nav" id="navbar">
+  <div class="nav-inner">
+    <nav class="nav-links" id="navLinks">
+      <a href="#home" class="active">首页</a>
+      <a href="#about">关于我</a>
+      <a href="#friends">好友</a>
+      <a href="#members">成员</a>
+      <a href="#skills">技能</a>
+      <a href="#driver">驱动</a>
+      <a href="#projects">项目</a>
+      <a href="#contact">联系我</a>
+
+      <div class="nav-search" id="navSearchWrap">
+        <input type="text" class="nav-search-input" id="searchInput" placeholder="搜索本站…">
+        <i class="fa-solid fa-magnifying-glass nav-search-icon" id="searchBtn"></i>
+        <div class="search-panel" id="searchPanel"></div>
+      </div>
+    </nav>
+
+    <div class="nav-search-mini" id="navSearchMini">
+      <input type="text" id="searchInputMini" placeholder="搜索…">
+      <i class="fa-solid fa-magnifying-glass" id="searchBtnMini"></i>
+      <div class="search-panel" id="searchPanelMini"></div>
+    </div>
+  </div>
+</header>
+
+<!-- ================================================================
+     ② 右侧悬浮导航（仅首页，滚动后出现）
+     ================================================================ -->
+<nav class="side-nav" id="sideNav">
+  <a data-target="home">首页</a>
+  <a data-target="about">关于我</a>
+  <a data-target="friends" data-action="friends">好友</a>
+  <a data-target="members" data-action="members">成员</a>
+  <a data-target="skills">技能</a>
+  <a data-target="driver" data-action="driver">驱动</a>
+  <a data-target="projects">项目</a>
+  <a data-target="contact">联系我</a>
+</nav>
+
+<!-- ================================================================
+     ③ 首页（homePage）
+     ================================================================ -->
+<div id="homePage">
+  <main>
+    <!-- ③-1 首屏 Hero -->
+    <section class="hero fade-out" id="home">
+      <div class="avatar-wrap">
+        <img class="avatar" src="img/avatar.png" alt="沉默的头像">
+      </div>
+      <h1 class="name">沉默</h1>
+      <p class="tagline">嗨嗨，这里是沉默科技频道！</p>
+      <div class="hero-actions">
+        <a href="#about" class="btn btn-primary">了解更多</a>
+        <a href="#contact" class="btn btn-ghost">联系我</a>
+      </div>
+    </section>
+
+    <!-- ③-2 数据统计 -->
+    <section class="section reveal fade-out">
+      <div class="stats">
+        <div class="stat"><div class="stat-num">300+</div><div class="stat-label">全网粉丝</div></div>
+        <div class="stat"><div class="stat-num">30+</div><div class="stat-label">原创内容</div></div>
+        <div class="stat"><div class="stat-num">1年</div><div class="stat-label">持续更新</div></div>
+      </div>
+    </section>
+
+    <!-- ③-3 关于我 -->
+    <section class="section reveal fade-out" id="about">
+      <h2 class="section-title">关于我</h2>
+      <div class="card">
+        <p>你好，我是<span class="hl">沉默</span>，一个热爱 PC 硬件、喜欢折腾虚拟机、也乐于把过程记录下来的普通人。平时喜欢研究各种硬件搭配、系统优化，也喜欢在虚拟机里做各种有趣的测试。</p>
+        <p>我相信技术能让生活变得更简单，也相信<span class="hl">持续学习</span>和<span class="hl">真诚分享</span>的力量。信息与你无限，未来属于计算，希望在这个小小的角落里，能和你一起探索更多可能。</p>
+        <p>不忙的时候，我会剪辑视频、写点文案，偶尔也会发一些日常。如果你也对 PC 硬件、虚拟机测试或视频剪辑感兴趣，欢迎随时来找我聊聊,查看我的首页有惊喜.</p>
+        <div class="tags">
+          <span class="tag">PC 硬件</span>
+          <span class="tag">视频剪辑</span>
+          <span class="tag">VMware 测试</span>
+          <span class="tag">病毒测试</span>
+          <span class="tag">文案策划</span>
+          <span class="tag">系统 </span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ③-4 好友入口 -->
+    <section class="section reveal fade-out" id="friends">
+      <h2 class="section-title">我的好朋友们</h2>
+      <div class="driver-block">
+        <div class="driver-block-icon"><i class="fa-solid fa-user-group"></i></div>
+        <h3>我的好朋友们</h3>
+        <p>一起折腾硬件、做内容、搞事情的伙伴们，点进去看看吧。</p>
+        <button class="btn btn-primary" id="openFriendsPage">进入页面 <i class="fa-solid fa-arrow-right"></i></button>
+      </div>
+    </section>
+
+    <!-- ③-5 成员入口 -->
+    <section class="section reveal fade-out" id="members">
+      <h2 class="section-title">工作室成员</h2>
+      <div class="driver-block">
+        <div class="driver-block-icon"><i class="fa-solid fa-people-group"></i></div>
+        <h3>工作室成员</h3>
+        <p>负责网站构建、界面与优化的成员们，点进去看看吧。</p>
+        <button class="btn btn-primary" id="openMembersPage">进入页面 <i class="fa-solid fa-arrow-right"></i></button>
+      </div>
+    </section>
+
+    <!-- ③-6 技能 -->
+    <section class="section reveal fade-out" id="skills">
+      <h2 class="section-title">我的技能</h2>
+      <div class="skills">
+        <div class="skill"><div class="skill-head"><span class="skill-name">PC 硬件</span><span class="skill-percent">90%</span></div><div class="skill-bar"><div class="skill-fill" data-width="90%"></div></div></div>
+        <div class="skill"><div class="skill-head"><span class="skill-name">视频剪辑</span><span class="skill-percent">88%</span></div><div class="skill-bar"><div class="skill-fill" data-width="88%"></div></div></div>
+        <div class="skill"><div class="skill-head"><span class="skill-name">VMware 病毒测试</span><span class="skill-percent">82%</span></div><div class="skill-bar"><div class="skill-fill" data-width="82%"></div></div></div>
+        <div class="skill"><div class="skill-head"><span class="skill-name">文案策划</span><span class="skill-percent">80%</span></div><div class="skill-bar"><div class="skill-fill" data-width="80%"></div></div></div>
+      </div>
+    </section>
+
+    <!-- ③-7 驱动入口 -->
+    <section class="section reveal fade-out" id="driver">
+      <h2 class="section-title">驱动下载中心</h2>
+      <div class="driver-block">
+        <div class="driver-block-icon"><i class="fa-solid fa-download"></i></div>
+        <h3>CMP · P104 · P102 · P106 驱动</h3>
+        <p>整理矿卡驱动介绍、使用教程与下载指引，驱动均由雨糖科技发布。点击下方按钮进入驱动页面查看详情。</p>
+        <button class="btn btn-primary" id="openDriverPage">进入驱动页面 <i class="fa-solid fa-arrow-right"></i></button>
+      </div>
+    </section>
+
+    <!-- ③-8 项目 -->
+    <section class="section reveal fade-out" id="projects">
+      <h2 class="section-title">我的项目</h2>
+      <div class="projects">
+        <div class="project clickable" id="openArticlePage">
+          <div class="project-icon"><i class="fa-solid fa-microchip"></i></div>
+          <h3 class="project-title">PC 硬件折腾</h3>
+          <p class="project-desc">E5 + CMP 40HX 垃圾佬配置实战，三角洲 100 帧，内存先爆。</p>
+          <span class="project-enter">查看详情 <i class="fa-solid fa-arrow-right"></i></span>
+        </div>
+        <div class="project">
+          <div class="project-icon"><i class="fa-solid fa-video"></i></div>
+          <h3 class="project-title">视频剪辑</h3>
+          <p class="project-desc">用剪辑软件把硬件测试、虚拟机实验等内容做成清晰、好看的视频。</p>
+        </div>
+        <div class="project">
+          <div class="project-icon"><i class="fa-solid fa-shield-halved"></i></div>
+          <h3 class="project-title">VMware 病毒测试</h3>
+          <p class="project-desc">在虚拟机里做病毒样本测试与安全实验，观察行为、记录过程、分享结论。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ③-9 格言 -->
+    <section class="section reveal fade-out">
+      <div class="quote">
+        <p class="quote-text">信息与你无限，未来属于计算。</p>
+        <p class="quote-author">—— 沉默</p>
+      </div>
+    </section>
+
+    <!-- ③-10 找到我 -->
+    <section class="section reveal fade-out">
+      <h2 class="section-title">找到我</h2>
+      <div class="links">
+        <a class="link-item" data-url="https://www.kuaishou.com/profile/3xgxnym4tvt7b9k?source=NewReco">
+          <i class="fa-solid fa-video"></i>
+          <span>快手</span>
+        </a>
+        <a class="link-item" data-url="https://www.douyin.com/user/self">
+          <i class="fa-brands fa-tiktok"></i>
+          <span>抖音</span>
+        </a>
+        <a class="link-item" data-url="https://space.bilibili.com/3546894435354832?spm_id_from=333.1007.0.0">
+          <i class="fa-brands fa-bilibili"></i>
+          <span>哔哩哔哩</span>
+        </a>
+        <a class="link-item" data-url="https://qm.qq.com/q/X5y2dQCZ2w">
+          <i class="fa-brands fa-qq"></i>
+          <span>QQ</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- ③-11 联系我 -->
+    <section class="section reveal fade-out" id="contact">
+      <h2 class="section-title">联系我</h2>
+      <p class="contact-text">很高兴认识你，欢迎在这些地方找到我 👇</p>
+      <div class="socials">
+        <a class="social" data-url="https://space.bilibili.com/3546894435354832?spm_id_from=333.1007.0.0" aria-label="哔哩哔哩"><i class="fa-brands fa-bilibili"></i></a>
+        <a class="social" data-url="https://www.kuaishou.com/profile/3xgxnym4tvt7b9k?source=NewReco" aria-label="快手"><i class="fa-solid fa-video"></i></a>
+        <a class="social" data-url="https://www.douyin.com/user/MS4wLjABAAAAba86IbJOjo0o-v0hb2uLnoBKrXXpFA-JRnnU-sRKV4X1Onq6bi_Tq369k1azS-_0?from_tab_name=main" aria-label="抖音"><i class="fa-brands fa-tiktok"></i></a>
+        <a class="social" href="mailto:2775279394@qq.com" aria-label="邮箱"><i class="fa-solid fa-envelope"></i></a>
+      </div>
+      <div class="contact-info">
+        <a class="contact-item" href="mailto:2775279394@qq.com"><i class="fa-solid fa-envelope"></i><span>2775279394@qq.com</span></a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="fade-out">© 2026 XBAOS · 保留所有权利</footer>
+</div>
+
+<!-- ================================================================
+     ④ 驱动页面（driverPage，默认隐藏，JS 切换显示）
+     ================================================================ -->
+<div class="driver-page" id="driverPage">
+  <button class="page-back" id="backHome"><i class="fa-solid fa-arrow-left"></i> 返回首页</button>
+  <h1 class="page-title">驱动下载中心</h1>
+  <p class="page-subtitle">CMP · P104 · P102 · P106 驱动介绍 · 如何使用 · 驱动下载</p>
+
+  <!-- ④-1 CMP 及矿卡产业链 -->
+  <div class="driver-section">
+    <div class="driver-section-head"><div class="driver-section-icon"><i class="fa-solid fa-industry"></i></div><h3>CMP 及矿卡产业链</h3></div>
+    <p>CMP（Cryptocurrency Mining Processor）是英伟达专为加密货币挖矿设计的显卡系列，与普通 GeForce 游戏卡不同，CMP 系列去掉了视频输出接口，专注于算力输出。</p>
+    <p>除了 CMP 系列，市面上还有大量基于游戏卡改造的矿卡，比如 <span class="hl">P104</span>、<span class="hl">P102</span>、<span class="hl">P106</span> 等型号。它们本质上还是 GP104 / GP102 / GP106 核心，只是被厂商重新设计为无显示输出的挖矿专用卡。</p>
+    <ul>
+      <li><strong>P106</strong> —— 基于 GP106 核心，算力适中，功耗较低，常见于入门挖矿平台</li>
+      <li><strong>P104</strong> —— 基于 GP104 核心，算力更强，适合中端矿机</li>
+      <li><strong>P102</strong> —— 基于 GP102 核心，算力最高，属于矿卡里的高端型号</li>
+      <li><strong>CMP 系列</strong> —— 英伟达官方矿卡，覆盖 30HX / 40HX / 50HX / 90HX 等多个型号</li>
+    </ul>
+    <p>产业链大致分为上游芯片设计、中游板卡制造、下游矿场与渠道流通。随着矿潮退去，大量矿卡流入二手市场，成为低成本算力与折腾玩家的选择。</p>
+  </div>
+
+  <!-- ④-2 驱动介绍 -->
+  <div class="driver-section">
+    <div class="driver-section-head"><div class="driver-section-icon"><i class="fa-solid fa-circle-info"></i></div><h3>驱动介绍</h3></div>
+    <p>驱动是操作系统与显卡之间的桥梁，负责把系统指令翻译成 GPU 能理解的语言。一块显卡能不能发挥全部性能，驱动版本的选择非常关键。</p>
+    <p>对于 CMP、P104、P102、P106 这类矿卡，常见的驱动来源有三类：</p>
+    <ul>
+      <li>英伟达官方驱动：稳定性最好，兼容性最强，但部分矿卡型号需要改 INF</li>
+      <li>厂商定制驱动：针对特定板卡做过适配，安装更省心</li>
+      <li>社区修改驱动：由玩家或工作室维护，支持更多冷门型号</li>
+    </ul>
+    <p>本站整理的矿卡驱动均来自 <span class="hl">雨糖科技</span>，版权归雨糖科技所有。安装前请确认显卡型号与系统版本，避免装错导致黑屏或无法进入系统。</p>
+  </div>
+
+  <!-- ④-3 如何使用 -->
+  <div class="driver-section">
+    <div class="driver-section-head"><div class="driver-section-icon"><i class="fa-solid fa-book-open"></i></div><h3>如何使用</h3></div>
+    <p>安装驱动前，建议先做好这几步准备工作：</p>
+    <ul>
+      <li>确认显卡型号：可通过 GPU-Z 或设备管理器查看</li>
+      <li>确认系统版本：Windows 10 / 11，64 位还是 32 位</li>
+      <li>卸载旧驱动：建议用 DDU 在安全模式下彻底清除</li>
+      <li>关闭杀毒软件：避免安装过程中被拦截</li>
+    </ul>
+    <p>安装步骤：</p>
+    <ul>
+      <li>下载对应型号的驱动安装包</li>
+      <li>解压后右键以管理员身份运行安装程序</li>
+      <li>选择"自定义安装"，勾选"执行清洁安装"</li>
+      <li>等待安装完成，重启电脑</li>
+      <li>打开 GPU-Z 或设备管理器，确认驱动已正常加载</li>
+    </ul>
+    <p>如果安装失败或出现黑屏，可以进入安全模式重新卸载驱动，再换一个版本重试。</p>
+  </div>
+
+  <!-- ④-4 驱动下载 -->
+  <div class="driver-section">
+    <div class="driver-section-head"><div class="driver-section-icon"><i class="fa-solid fa-download"></i></div><h3>驱动下载</h3></div>
+    <p>本页整理的 CMP、P104、P102、P106 驱动均来自 <span class="hl">雨糖科技</span>，版权归雨糖科技所有。本站仅提供信息整理与跳转链接，不存储任何驱动文件。</p>
+    <ul>
+      <li><strong>CMP 系列驱动</strong> —— 由雨糖科技发布</li>
+      <li><strong>P104 驱动</strong> —— 由雨糖科技发布</li>
+      <li><strong>P102 驱动</strong> —— 由雨糖科技发布</li>
+      <li><strong>P106 驱动</strong> —— 由雨糖科技发布</li>
+    </ul>
+    <p>如需下载，请前往雨糖科技官方页面获取最新版本。</p>
+    <a class="download-btn" href="https://raincandy.tech/software-projects/" target="_blank" rel="noopener"><i class="fa-solid fa-arrow-up-right-from-square"></i> 前往雨糖科技下载</a>
+    <div class="driver-note">免责说明：本页仅提供驱动信息整理与跳转链接，驱动文件版权归雨糖科技所有。如需下载或反馈问题，请前往雨糖科技官方渠道。</div>
+  </div>
+</div>
+
+<!-- ================================================================
+     ⑤ 文章页面（articlePage，默认隐藏，JS 切换显示）
+     ================================================================ -->
+<div class="article-page" id="articlePage">
+  <button class="page-back" id="backFromArticle"><i class="fa-solid fa-arrow-left"></i> 返回首页</button>
+  <div class="article-card">
+    <h1 class="article-title">别问，问就是垃圾佬的胜利。E5+CMP 40HX，三角洲实战 100 帧，内存先爆了。</h1>
+    <p>先说结论：这套玩意儿能玩，但没点折腾精神别碰。</p>
+    <p>我手里这套是 E5-2673 v3（关了超线程，全核 3.0），配 CMP 40HX。主板是闲鱼捡的 X99 魔改板，显卡没显示输出，得补电容、刷雨糖驱动，还得拿个亮机卡输出。这一套下来，加上内存硬盘电源，总共不到 800 块。</p>
+
+    <h4>实测数据</h4>
+    <p>打三角洲烽火地带，1080P 全低画质，FSR 性能档。</p>
+    <p>第一张图是跑了 20 分钟的：平均 104 帧，1% Low 65 帧。CPU 占用 69%，温度 57 度；显卡占用 55%，温度 70 度。显卡没跑满，CPU 也没跑满，说明瓶颈在别的地方。</p>
+    <img class="article-img" src="img/1.jpg" alt="三角洲测试图 1">
+    <p class="article-img-caption">图 1：跑了 20 分钟，平均 104 帧</p>
+
+    <p>第二张图是另一局大战场，平均 88 帧，1% Low 49 帧。这局 CPU 占用 56%，显卡 52%，都挺闲的，但帧率就是上不去。</p>
+    <img class="article-img" src="img/2.jpg" alt="三角洲测试图 2">
+    <p class="article-img-caption">图 2：另一局大战场，平均 88 帧</p>
+
+    <p>重点看第三张图，这才是这套配置的真相：看 GPU 那栏，显卡占用率 <span class="hl">99%</span>，显存占用 60%，显卡功耗 115W，热点温度干到 82 度了。但 CPU 才 42W，占用 62%。更离谱的是内存，占用率直接干到 <span class="hl">93%</span>！16G DDR3 被吃满，这是最大的短板。</p>
+    <img class="article-img" src="img/3.jpg" alt="三角洲测试图 3">
+    <p class="article-img-caption">图 3：显卡 99% 占用，内存 93% 被吃满</p>
+
+    <div class="article-conclusion">所以这套配置的真实情况是：显卡在拼命干活，CPU 在摸鱼，但 PCIe 1.1 x4 的破通道把数据卡住了，16G 内存又不够用。显卡有劲使不出，内存先爆了，帧率自然上不去。</div>
+
+    <h4>折腾的坑，我踩过的，你们别踩</h4>
+    <ol>
+      <li><strong>PCIe 锁 1.1：</strong>别管你插哪条槽，这破板子最高就给你锁在 1.1 x4。想跑 3.0？做梦。你就算补了电容也白搭。</li>
+      <li><strong>CMP 40HX 没输出：</strong>这卡原厂没显示接口，必须补电容 + 刷雨糖驱动，还得配亮机卡。少一步你都进不去游戏。</li>
+      <li><strong>DDR3 内存掉通道：</strong>这板子插四根内存必卡 B7。老老实实插两根，16G 根本不够用，建议直接上 32G。</li>
+      <li><strong>BIOS 拉稀：</strong>你想调 PCIe 速率？找不到选项的。刷了鸡血也没用，通道速度是硬锁的。</li>
+    </ol>
+
+    <h4>优化方面，就一句话</h4>
+    <p>打鸡血（关超线程 + 锁 3.1 + 降压 -45），刷雨糖驱动，关掉所有后台和自动更新。剩下的别折腾了，你折腾不过这块板子的物理限制。</p>
+
+    <h4>最后给个实在建议</h4>
+    <p>如果你只是想安安稳稳玩个游戏，别碰这套垃圾。直接花几百块买个 RX 580 或者 GTX 1660 Super，插上就能用，不用补电容、不用刷驱动、不用怕掉驱动。</p>
+    <p>你要是跟我一样，就喜欢花小钱办大事，享受折腾的过程，那这套配置能让你玩得很爽——但爽的是折腾的过程，不是帧率。</p>
+  </div>
+</div>
+
+<!-- ================================================================
+     ⑥ 好友页面（friendsPage，默认隐藏，JS 切换显示）
+     ================================================================ -->
+<div class="friends-page" id="friendsPage">
+  <button class="page-back" id="backFromFriends"><i class="fa-solid fa-arrow-left"></i> 返回首页</button>
+  <h1 class="page-title">我的好朋友们</h1>
+  <p class="page-subtitle">一起玩、一起做点有意思的事</p>
+
+  <div class="driver-section">
+    <div class="friends-list">
+      <a class="friend-item" href="friend-xingye.html">
+        <img src="img/friend-xingye.jpg" alt="星奈酱">
+        <span class="friend-name">星奈酱</span>
+      </a>
+      <a class="friend-item" href="friend-baizi.html">
+        <img src="img/friend-baizi.jpg" alt="白子">
+        <span class="friend-name">白子</span>
+      </a>
+      <a class="friend-item" href="friend-05.html">
+        <img src="img/friend-05.jpg" alt="05">
+        <span class="friend-name">05</span>
+      </a>
+      <a class="friend-item" href="friend-dianji.html">
+        <img src="img/friend-xingye-dianji.jpg" alt="星野少玩点电击">
+        <span class="friend-name">星野少玩点电击</span>
+      </a>
+      <a class="friend-item" href="friend-yueshen.html">
+        <img src="img/friend-yueshen.jpg" alt="月神">
+        <span class="friend-name">月神</span>
+      </a>
+      <a class="friend-item" href="friend-zhixia.html">
+        <img src="img/friend-zhixia.jpg" alt="知夏">
+        <span class="friend-name">知夏</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- ================================================================
+     ⑦ 成员页面（membersPage，默认隐藏，JS 切换显示）
+     ================================================================ -->
+<div class="members-page" id="membersPage">
+  <button class="page-back" id="backFromMembers"><i class="fa-solid fa-arrow-left"></i> 返回首页</button>
+  <h1 class="page-title">工作室成员</h1>
+  <p class="page-subtitle">负责网站构建、界面与优化的成员们</p>
+
+    <div class="members-list">
+      <a class="member-item" id="silenceMemberCard" href="member-silence.html">
+        <img src="img/member-silence.jpg" alt="我">
+        <div class="member-name">沉默</div>
+        <span class="member-role">网站构建 &amp; 代码更改</span>
+      </a>
+      <a class="member-item" href="member-xiaobaiban.html">
+        <img src="img/member-xiaobaiban.jpg" alt="小白板">
+        <div class="member-name">小白板</div>
+        <span class="member-role">网站界面 &amp; 优化</span>
+      </a>
+      <a class="member-item" href="member-baizimeimei.html">
+        <img src="img/member-baizi-meimei.jpg" alt="白子妹妹">
+        <div class="member-name">白子妹妹</div>
+        <span class="member-role">网站界面 &amp; 优化</span>
+      </a>
+      <a class="member-item" href="friend-dianji.html">
+        <img src="img/friend-xingye-dianji.jpg" alt="星野少玩点电击">
+        <div class="member-name">星野少玩点电击</div>
+        <span class="member-role">幕后打辅助</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- ================================================================
+     ⑧ 全站交互脚本（本地化 js/main.js）
+     ================================================================ -->
+<script src="js/main.js"></script>
+
+<!-- AI 门禁拦截页 -->
+<div class="ai-gate" id="aiGate">
+  <div class="ai-gate-stage">
+    <div class="ai-gate-text" id="aiGateText"></div>
+    <img class="ai-gate-avatar" src="img/claude.png" alt="Claude">
+    <div class="ai-gate-choices" id="aiGateChoices"></div>
+  </div>
+  <div class="ai-gate-denied" id="aiGateDenied">访问驳回！</div>
+</div>
+
+<!-- 被踢出提示页 -->
+<div class="ai-kick" id="aiKick">
+  <i class="fa-solid fa-ban ai-kick-icon"></i>
+  <div class="ai-kick-title">你无法访问此网站</div>
+  <div class="ai-kick-sub">此网站拒绝了你的连接</div>
+</div>
+
+<link rel="stylesheet" href="css/ai-gate.css">
+<script src="js/ai-gate.js"></script>
+
+</body>
+</html>
